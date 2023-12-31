@@ -39,7 +39,7 @@ dependencies:
   http: ^1.1.2
   get: ^4.6.6
   google_fonts: ^6.1.0
-  cached_network_image:
+  cached_network_image: any
   intl:
 
 dev_dependencies:

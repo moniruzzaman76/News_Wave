@@ -1,7 +1,7 @@
 class NewsChannelHeadLineModel {
   String? status;
   int? totalResults;
-  List<Articles>? articlesList;
+  List<ArticlesData>? articlesList;
 
   NewsChannelHeadLineModel({this.status, this.totalResults, this.articlesList});
 
@@ -9,9 +9,9 @@ class NewsChannelHeadLineModel {
     status = json['status'];
     totalResults = json['totalResults'];
     if (json['articles'] != null) {
-      articlesList = <Articles>[];
+      articlesList = <ArticlesData>[];
       json['articles'].forEach((v) {
-        articlesList!.add(Articles.fromJson(v));
+        articlesList!.add(ArticlesData.fromJson(v));
       });
     }
   }
@@ -27,7 +27,7 @@ class NewsChannelHeadLineModel {
   }
 }
 
-class Articles {
+class ArticlesData {
   Source? source;
   String? author;
   String? title;
@@ -37,7 +37,7 @@ class Articles {
   String? publishedAt;
   String? content;
 
-  Articles(
+  ArticlesData(
       {this.source,
         this.author,
         this.title,
@@ -47,7 +47,7 @@ class Articles {
         this.publishedAt,
         this.content});
 
-  Articles.fromJson(Map<String, dynamic> json) {
+  ArticlesData.fromJson(Map<String, dynamic> json) {
     source =
     json['source'] != null ? Source.fromJson(json['source']) : null;
     author = json['author'];
