@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
 import 'package:news_wave/view_model/news_view_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 class HomeScreen extends StatefulWidget {
@@ -13,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final NewsViewModel viewModel = NewsViewModel();
+  final format = DateFormat("dd MMMM, yyyy");
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                    itemCount: snapshot.data?.articlesList?.length,
                      itemBuilder: (context,index){
                     var newsData = snapshot.data?.articlesList![index];
+
+                    DateTime datetime = DateTime.parse(newsData!.publishedAt.toString());
+
                        return Stack(
                          alignment: Alignment.center,
                          children: [
@@ -65,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              child: ClipRRect(
                                borderRadius: BorderRadius.circular(15),
                                child: CachedNetworkImage(
-                                  imageUrl: newsData!.urlToImage.toString(),
+                                  imageUrl: newsData.urlToImage.toString(),
                                  fit: BoxFit.cover,
                                  placeholder: (context, url) => Container(child: spinKit2,),
                                  errorWidget: (context, url, error) => const Icon(Icons.error,color: Colors.red,),
@@ -103,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                          Text(newsData.source!.name ?? "BBC News",style: GoogleFonts.poppins(
                                            fontSize: 12,
                                            fontWeight: FontWeight.w500,
-                                           color: Colors.grey[600],
+                                           color: Colors.grey[800],
                                          ),),
-                                         Text(newsData.publishedAt ?? "Jun 15,2024",style: GoogleFonts.poppins(
+                                         Text(format.format(datetime),style: GoogleFonts.poppins(
                                              fontSize: 12,
                                              fontWeight: FontWeight.w500,
                                              color: Colors.grey[600]
