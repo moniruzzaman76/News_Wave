@@ -71,6 +71,51 @@ class _HomeScreenState extends State<HomeScreen> {
                                  errorWidget: (context, url, error) => const Icon(Icons.error,color: Colors.red,),
                                ),
                              ),
+                           ),
+                           Positioned(
+                             bottom: 20,
+                             child: Card(
+                               child: Container(
+                                 padding: const EdgeInsets.all(16),
+                                 height: height * 0.2,
+                                 width: width * 0.9,
+                                 decoration: BoxDecoration(
+                                   color: Colors.white,
+                                   borderRadius: BorderRadius.circular(16),
+                                 ),
+                                 child: Column(
+                                   crossAxisAlignment:CrossAxisAlignment.center,
+                                   mainAxisAlignment: MainAxisAlignment.center,
+                                   children: [
+                                     const Spacer(),
+                                     Text(newsData.title ?? "Unknown",
+                                       maxLines: 2,
+                                       overflow: TextOverflow.ellipsis,
+                                       style: GoogleFonts.poppins(
+                                       fontWeight: FontWeight.w600,
+                                       fontSize: 16,
+                                       color: Colors.black,
+                                     ),),
+                                     const Spacer(),
+                                     Row(
+                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                       children: [
+                                         Text(newsData.source!.name ?? "BBC News",style: GoogleFonts.poppins(
+                                           fontSize: 12,
+                                           fontWeight: FontWeight.w500,
+                                           color: Colors.grey[600],
+                                         ),),
+                                         Text(newsData.publishedAt ?? "Jun 15,2024",style: GoogleFonts.poppins(
+                                             fontSize: 12,
+                                             fontWeight: FontWeight.w500,
+                                             color: Colors.grey[600]
+                                         ),)
+                                       ],
+                                     )
+                                   ],
+                                 ),
+                               ),
+                             ),
                            )
                          ],
                        );
